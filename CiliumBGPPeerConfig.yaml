@@ -1,0 +1,25 @@
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumBGPPeerConfig
+metadata:
+  name: cilium-peer
+spec:
+  # Auth not used at the moment. Sample secret included.
+  # Would also need configuration in frr.conf (BGP password)
+  #
+  # authSecretRef: cilium-bgp-auth
+  ebgpMultihop: 4
+  gracefulRestart:
+    enabled: true
+    restartTimeSeconds: 15
+  timers:
+    connectRetryTimeSeconds: 12
+    holdTimeSeconds: 9
+    keepAliveTimeSeconds: 3
+  families:
+    - afi: ipv4
+      safi: unicast
+      advertisements:
+        matchLabels:
+          advertise: "pod-cidr"
+

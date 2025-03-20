@@ -1,0 +1,22 @@
+---
+apiVersion: cilium.io/v2alpha1
+kind: CiliumBGPAdvertisement
+metadata:
+  name: pod-cidr-advert
+  labels:
+    advertise: pod-cidr
+spec:
+  advertisements:
+    # advertise all pod cidr:
+    - advertisementType: "PodCIDR"
+    # advertise all service IP:
+    - advertisementType: "Service"
+      service:
+        addresses:
+          - ClusterIP
+          - ExternalIP
+          - LoadBalancerIP
+      selector:
+        matchExpressions:
+          # nothing matches so everything is selected.
+          - { key: doesnotexist, operator: NotIn, values: [ neverused ] }

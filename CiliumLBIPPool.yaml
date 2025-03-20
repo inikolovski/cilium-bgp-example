@@ -1,0 +1,15 @@
+---
+# Work in progress.
+# Need to define pools of IP to give to LoadBalancer type service
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: "ip-pool"
+spec:
+  blocks:
+    - cidr: "192.168.127.0/24"
+      #- cidr: "xx.xx.xx.xx/xx"
+      #  serviceSelector:
+      #    matchExpressions:
+      #      - {key: someKey, operator: NotIn, values: [doesnotexist]}
+      #

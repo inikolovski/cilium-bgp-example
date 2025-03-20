@@ -1,0 +1,74 @@
+---
+### Cilium 1.17.2 values for helm install
+autoDirectNodeRoutes: true
+bandwidthManager:
+  bbr: true
+  enabled: true
+bgpControlPlane:
+  enabled: true
+bpf:
+  datapathMode: "netkit"
+  lbExternalClusterIP: true
+  masquerade: true
+  tproxy: true
+  enableTCX: true
+bpfClockProbe: true
+cluster:
+  name: home
+  id: 127
+debug:
+  enabled: true
+  encryption:
+    enabled: true
+    type: wireguard
+    nodeEncryption: true
+directRoutingSkipUnreachable: true
+envoy:
+  enabled: true
+  rollOutPods: true
+  securityContext:
+    capabilities:
+      keepCapNetBindService: true
+      envoy:
+        - NET_ADMIN
+        - PERFMON
+        - BPF
+        - NET_BIND_SERVICE
+gatewayAPI:
+  enabled: true
+  hostNetwork:
+    enabled: true
+hubble:
+  relay:
+    enabled: true
+  ui:
+    enabled: true
+ipam:
+  operator:
+    clusterPoolIPv4MaskSize: 24
+    clusterPoolIPv4PodCIDRList: ["172.16.0.0/20"]
+ingressController:
+  default: true
+  enabled: true
+  loadbalancerMode: "dedicated"
+ipv4NativeRoutingCIDR: "172.16.0.0/12"
+k8sServiceHost: "api.k8s.example.com"
+k8sServicePort: "6443"
+kubeProxyReplacement: true
+kubeProxyReplacementHealthzBindAddr: "0.0.0.0:10256"
+loadBalancer:
+  acceleration: "best-effort"
+  mode: hybrid
+  algorithm: maglev
+maglev:
+  hashSeed: Tot4a11yR4nd0m
+  tableSize: 65521
+operator:
+  replicas: 1
+  prometheus:
+    enabled: true
+prometheus:
+  enabled: true
+routingMode: native
+socketLB:
+  hostNamespaceOnly: true
